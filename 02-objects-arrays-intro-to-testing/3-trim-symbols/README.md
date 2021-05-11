@@ -16,3 +16,4 @@ trimSymbols('xxx', 1); // 'x'
 
 trimSymbols('xxxaaaaa', 2); // 'xxaa'
 trimSymbols('xxxaaaaab', 3); // 'xxxaaab'
+```

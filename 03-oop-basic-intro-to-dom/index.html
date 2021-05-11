@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<body></body>
+
+<div id="root"></div>
+
+<script>
+  class Component {
+    constructor(description, data) {
+      this.description = description;
+      this.data = data;
+    }
+
+    render () {
+      console.error(this.description);
+    }
+  }
+
+  const component = new Component('some description', [1, 2, 3]);
+
+  console.error('component', component);
+  console.error(typeof Component);
+</script>
