@@ -1,43 +1,52 @@
 export default class NotificationMessage {
-  static displayNotification;
-
-  constructor(string = '', { duration = 0, type = '' }) {
-    this.string = string;
+  constructor(message = '',
+              {
+                duration = 2000,
+                type = 'success'
+              } = {}){
+    this.message = message;
     this.duration = duration;
     this.type = type;
-  }
-
-  show(sub = document.body) {
-    if (NotificationMessage.displayNotification) {
-      NotificationMessage.displayNotification.remove();
-    }
-    sub.append(this.render());
-    setTimeout(() => this.destroy(), this.duration);
-  }
-
-  get template() {
-    return `<div class="notification ${this.type}" style="--value:${this.duration / 1000}s">
-      <div class="timer"></div>
-      <div class="inner-wrapper">
-        <div class="notification-header">${this.type}</div>
-        <div class="notification-body">
-          ${this.string}
-        </div>
-      </div>
-    </div>`;
+    this.render()
   }
 
   render() {
-    this.element = document.createElement('div');
-    this.element.innerHTML = this.template;
-    NotificationMessage.displayNotification = this.element;
-
-    return NotificationMessage.displayNotification;
+    const div = document.createElement('div');
+    div.innerHTML = `
+            <div class="notification ${this.type}" style="--value:${this.duration/1000}s">
+                <div class="timer"></div>
+                <div class="inner-wrapper">
+                    <div class="notification-header">${this.type}</div>
+                    <div class="notification-body">
+                        ${this.message}
+                    </div>
+                </div>
+            </div>
+        `
+    this.element = div.firstElementChild;
   }
+
+  show(el = document.body) {
+    console.error('this.__proto__', this.__proto__);
+
+    debugger;
+    this.__proto__.element ? this.__proto__.element.remove() : null;
+
+
+    el.append(this.element);
+    setTimeout(() => {
+      this.remove()
+    }, this.duration);
+    this.__proto__.element = this.element;
+  }
+
   remove() {
     this.element.remove();
+    this.__proto__.element ? this.__proto__.element.remove() : null
   }
+
   destroy() {
-    this.remove();
+    this.element.remove();
+    this.__proto__.element ? this.__proto__.element.remove() : null
   }
 }
