@@ -16,7 +16,7 @@ const createSelector = name =>{
     }
 
     return result;
-  }
+  };
 };
 
 export const pick = createSelector('pick');

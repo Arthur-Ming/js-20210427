@@ -9,13 +9,13 @@
 // };
 
 export const pick = (obj, ...fields) => {
-  const newObj = {}
-  const arrayFields = fields[0]
+  const newObj = {};
+  const arrayFields = fields[0];
 
-  const arrayData = Object.entries(obj)
-  for (let field of arrayFields) {
-    for (let key of arrayData)
-      if (field === key[0]) newObj[field] = key[1]
+  const arrayData = Object.entries(obj);
+  for (const field of arrayFields) {
+    for (const key of arrayData)
+      if (field === key[0]) newObj[field] = key[1];
   }
-  return { ...newObj }
-}
+  return { ...newObj };
+};
